@@ -1,0 +1,10 @@
+File : Research/readme
+Author : Greg Furlich
+
+Comment : This is the GitHub repository of Selected Research Projects made for my research with the Telescope Array Project at the University of Utah 
+
+=== Contents ===
+
+1) atmosphere.cpp : C++ and Root defined functions to calculate the matter traversed through when traveling through the atmosphere. Used to determine atmospheric interaction depth for a cosmic ray event.
+
+=== End of Contents ===
