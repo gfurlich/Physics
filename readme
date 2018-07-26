@@ -11,8 +11,6 @@ Comment : This is the git repository of selected projects made for my research i
 
 2) fd_pedestal_animation.py : Generate animations of the pedestal values of our arrangment of Photomultiplier Tubes (PMTS) for our Cosmic Ray Detector Sites to make animations of the night sky in the field of view to help determine if stars are visible or the weather is cloudy.
 
-![Example Animation of PMT Pedestals][ped_animation]
-
-[ped_animation]: https://github.com/gfurlich/Research/blob/master/GIFs/y2017m02d25s0_dh.gif "Example Animation of PMT Pedestals"
+![Example Animation of PMT Pedestals](https://github.com/gfurlich/Research/blob/master/GIFs/y2017m02d25s0_dh.gif)
 
 === End of Contents ===
