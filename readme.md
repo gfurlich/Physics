@@ -24,11 +24,11 @@ Comment : This is the git repository of selected projects made for my research i
 <p align="center">
     <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_map.svg">
     <b>Telescope Array Cosmic Ray Observatory Satellite Map</b>
-    <br>
+    <br><br>
     <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_topo.svg">
     <b>Telescope Array Cosmic Ray Observatory Topo Map</b>
-    <br>
-    <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_topo.svg">
+    <br><br>
+    <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_relief.svg">
     <b>Telescope Array Cosmic Ray Observatory Relief Map</b>
 </p>
 
