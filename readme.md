@@ -11,11 +11,11 @@ Comment : This is the git repository of selected projects made for my research i
 
 2) fd_pedestal_animation_good_qual.py : Generate animations of the pedestal values of our arrangment of Photomultiplier Tubes (PMTS) for our Cosmic Ray Detector Sites to make animations of the night sky in the field of view to help determine if stars are visible or the weather is cloudy.
 
-<center><img src="https://github.com/gfurlich/Research/blob/master/GIFs/cloudy.gif"></center>
+<center><img src="https://github.com/gfurlich/Research/blob/master/GIFs/clear.gif" style="width: 50%; height: 50%></center>
 <center>Example Animation of PMT Pedestals Clear Night</center>
-![Example Animation of PMT Pedestals Clear Night](https://github.com/gfurlich/Research/blob/master/GIFs/clear.gif)
 
-![Example Animation of PMT Pedestals Cloudy Night](https://github.com/gfurlich/Research/blob/master/GIFs/cloudy.gif)
+<center><img src="https://github.com/gfurlich/Research/blob/master/GIFs/cloudy.gif" style="width: 50%; height: 50%></center>
+<center>Example Animation of PMT Pedestals Cloudy Night</center>
 
 3) TAMap/
 
