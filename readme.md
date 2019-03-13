@@ -19,19 +19,15 @@ Comment : This is the git repository of selected projects made for my research i
     <b>Example Animation of PMT Pedestals Cloudy Night</b>
 </p>
 
-3) `TAMap/TA_topo.ipynb` and `TAMap/TA_sate.ipynb` : Jupyter notebooks for remote image processing for overlaying features of the Telescope Array Cosmic Ray Observatory over Landsat 8 images for a satellite image and STRM data for a topo and relief map.
+3) **TAMap/TA_topo.ipynb** and **TAMap/TA_sate.ipynb** : Jupyter notebooks for remote image processing for overlaying features of the Telescope Array Cosmic Ray Observatory over Landsat 8 images for a satellite image and STRM data for a topo and relief map.
 
 <p align="center">
     <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_map.svg">
     <b>Telescope Array Cosmic Ray Observatory Satellite Map</b>
-    <br><br>
     <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_topo.svg">
     <b>Telescope Array Cosmic Ray Observatory Topo Map</b>
-    <br><br>
     <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_relief.svg">
     <b>Telescope Array Cosmic Ray Observatory Relief Map</b>
 </p>
 
-4)
-
-=== End of Contents ===
+4) **fd_pedestal_rnn_vectorization_v_chpc.py** : To load in all fd pedestal preprocessed data stored in Pandas DataFrame into Numpy array 3D array and pad Frames so they all have the same length for use in a Recurrent Convolution Neural Network (RCNN).
