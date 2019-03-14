@@ -19,14 +19,14 @@ Comment : This is the git repository of selected projects made for my research i
     <b>Example Animation of PMT Pedestals Cloudy Night</b>
 </p>
 
-3) **TAMap/TA_topo.ipynb** and **TAMap/TA_sate.ipynb** : Jupyter notebooks for remote image processing for overlaying features of the Telescope Array Cosmic Ray Observatory over Landsat 8 images for a satellite image and STRM data for a topo and relief map.
+3) **TAMap/TA_topo.ipynb** and **TAMap/TA_sate.ipynb** : Jupyter notebooks for remote image processing for overlaying features of the Telescope Array Cosmic Ray Observatory over Landsat 8 images for a satellite image and  Shuttle Radio Topography Mission () data for a topo and shaded relief map.
 
 <p align="center">
-    <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_map.svg">
+    <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_map.png">
     <b>Telescope Array Cosmic Ray Observatory Satellite Map</b>
-    <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_topo.svg">
+    <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_topo.png">
     <b>Telescope Array Cosmic Ray Observatory Topo Map</b>
-    <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_relief.svg">
+    <img src="https://github.com/gfurlich/Research/blob/master/TAMap/ta_relief.png">
     <b>Telescope Array Cosmic Ray Observatory Relief Map</b>
 </p>
 
