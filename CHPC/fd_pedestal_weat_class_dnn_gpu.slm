@@ -1,0 +1,81 @@
+#!/bin/bash
+##-------------------------------------------------------------------------------------#
+##
+## File :                 fd_pedestal_weat_class_dnn.slm
+## Author :               Greg Furlich
+## Date Created :         2019-04-08
+##
+## Purpose: SLURM batch script to run fd_pedestal_weat_class_dnn.py classification of a
+##
+## Execution : sbatch fd_pedestal_weat_class_cnn.slm
+
+## SLURM Variables ##
+#SBATCH --account=kingspeak-gpu
+#SBATCH --partition=kingspeak-gpu
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem=10GB
+#SBATCH --gres=gpu:k80:1
+#SBATCH --time=1:00:00
+#SBATCH -J dnn_gpu
+#SBATCH -o /uufs/chpc.utah.edu/common/home/u0949991/weat_ml/out/dnn.out
+#SBATCH -e /uufs/chpc.utah.edu/common/home/u0949991/weat_ml/out/dnn.err
+#SBATCH --mail-type=FAIL,BEGIN,END
+#SBATCH --mail-user=greg.furlich@cosmic.utah.edu
+
+## Echo Information on Job ##
+echo Beginning job on `hostname` on `date`
+echo Job number: $SLURM_JOB_ID
+echo Running on nodes: $SLURM_NODELIST
+echo Found GPU Nodes: $CUDA_VISIBLE_DEVICES
+
+## Load Enviroment ##
+echo Clean and Load Enviroment
+module purge
+module load python/3.5.2 root/6.12.04 miniconda3
+source activate /uufs/chpc.utah.edu/common/home/u0949991/software/pkg/miniconda3/envs/gpu
+
+## PyROOT Enviroment Paths ##
+# export PATH=$ROOTSYS/bin:$PYTHONDIR/bin:$PATH
+# export LD_LIBRARY_PATH=$ROOTSYS/lib:$PYTHONDIR/lib:$LD_LIBRARY_PATH
+# export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
+
+## Prepare Local Scratch ##
+echo Preparing Local Scratch
+mkdir -p /scratch/local/u0949991/DNN_Vectorized_Data/
+mkdir /scratch/local/u0949991/DNN_DF/
+mkdir /scratch/local/u0949991/DNN_out/
+
+## Copy to Local scratch ##
+echo Copying Vectorized Data and Labels to Local Scratch
+rsync /scratch/kingspeak/serial/u0949991/Data/fd_ped_vect_nonpadded/* /scratch/local/u0949991/DNN_Vectorized_Data/
+rsync /scratch/kingspeak/serial/u0949991/DF/* /scratch/local/u0949991/DNN_DF/
+
+## Check Local scratch ##
+echo Check Local Scratch
+ls /scratch/local/u0949991/DNN_Vectorized_Data/ | head
+ls /scratch/local/u0949991/DNN_DF/
+
+## Python Script to be Execute on Cluster ##
+echo Begin FD Pedestal Weather DNN GPU Model Training
+python fd_pedestal_weat_class_dnn_gpu.py
+echo Finished FD Pedestal Weather DNN GPU Model Training
+
+## Copy from Scratch ##
+echo Copying Model Outputs from Local Scratch to General Scratch
+du -sh /scratch/local/u0949991/DNN_out/
+rsync -a /scratch/local/u0949991/DNN_out/* /scratch/kingspeak/serial/u0949991/out/
+ls /scratch/kingspeak/serial/u0949991/out/
+
+## Copy from Scratch to Work Dir ##
+echo Copying Figures General Scratch to Work Dir
+rsync -av /scratch/kingspeak/serial/u0949991/out/*.png ~/weat_ml/figures/
+
+## Clean Up local scratch ##
+echo Cleaning Up Local Scratch
+rm -rf /scratch/local/u0949991/DNN_*
+
+## Echo completion ##
+echo Job completed on `date`
+
+## End of Slurm Script ##

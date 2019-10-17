@@ -1,0 +1,89 @@
+#!/bin/bash
+##-------------------------------------------------------------------------------------#
+##
+## File :                 fd_pedestal_weat_classify_all_rcnn.slm
+## Author :               Greg Furlich
+## Date Created :         2019-10-14
+##
+## Purpose: SLURM batch script to run weather_class_train_model_v_chpc_rcnn.slm
+##
+## Execution : sbatch fd_pedestal_weat_classify_all_rcnn.slm
+##
+## Start of SLURM Script ##
+
+## SLURM Variables ##
+#SBATCH --account=kingspeak-gpu
+#SBATCH --partition=kingspeak-gpu
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem=20GB
+#SBATCH --gres=gpu:k80:1
+#SBATCH --time=6:00:00
+#SBATCH -J rcnn_classgpu_
+#SBATCH -o /uufs/chpc.utah.edu/common/home/u0949991/weat_ml/out/classify_all_rcnn.out
+#SBATCH -e /uufs/chpc.utah.edu/common/home/u0949991/weat_ml/out/classify_all_rcnn.err
+#SBATCH --mail-type=FAIL,BEGIN,END
+#SBATCH --mail-user=greg.furlich@cosmic.utah.edu
+
+## Echo Information on Job ##
+echo Beginning job on `hostname` on `date`
+echo Job number: $SLURM_JOB_ID
+echo Running on nodes: $SLURM_NODELIST
+echo Found GPU Nodes: $CUDA_VISIBLE_DEVICES
+
+## Load Enviroment ##
+echo Load Enviroment ml-setup
+module restore ml-setup
+source activate /uufs/chpc.utah.edu/common/home/u0949991/.conda/envs/ml-setup
+# conda activate ml-setup
+# module list
+echo Load Python Modules ml-setup
+conda list
+
+## PyROOT Enviroment Paths ##
+# export PATH=$ROOTSYS/bin:$PYTHONDIR/bin:$PATH
+# export LD_LIBRARY_PATH=$ROOTSYS/lib:$PYTHONDIR/lib:$LD_LIBRARY_PATH
+# export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
+
+## Prepare Local Scratch ##
+echo Preparing Local Scratch
+mkdir -p /scratch/local/u0949991/RCNN_Data/
+mkdir -p /scratch/local/u0949991/RCNN_DF/
+mkdir -p /scratch/local/u0949991/RCNN_out/
+
+## Copy to Local scratch ##
+echo Copying Vectorized Data and Labels to Local Scratch
+rsync /scratch/kingspeak/serial/u0949991/Data/fd_ped_vect_nonpadded/* /scratch/local/u0949991/RCNN_Data/
+rsync /scratch/kingspeak/serial/u0949991/DF/* /scratch/local/u0949991/RCNN_DF/
+
+echo Files Transfered to /scratch/local/u0949991/RCNN_Data/
+ls -lrt /scratch/local/u0949991/RCNN_Data/ | head
+echo Files Transfered to /scratch/local/u0949991/RCNN_DF/
+ls -lrt /scratch/local/u0949991/RCNN_DF/
+
+## Python Script to be Execute on Cluster ##
+echo Begin FD Pedestal Weather Classification with RCNN Model
+python fd_pedestal_weat_classify_all_rcnn.py
+echo Finished FD Pedestal Weather Classification with RCNN Model
+
+## Copy from Scratch ##
+# echo Copying RCNN Model and Figures from Local Scratch to General Scratch
+# du -sh /scratch/local/u0949991/RCNN_out/
+# rsync -a /scratch/local/u0949991/RCNN_out/rcnn*.png /scratch/kingspeak/serial/u0949991/out/figures/
+# rsync -a /scratch/local/u0949991/RCNN_out/rcnn*.json /scratch/kingspeak/serial/u0949991/out/models/
+# rsync -a /scratch/local/u0949991/RCNN_out/rcnn*.h5 /scratch/kingspeak/serial/u0949991/out/models/
+# ls /scratch/kingspeak/serial/u0949991/out/figures/rcnn*
+# ls /scratch/kingspeak/serial/u0949991/out/models/rcnn*
+
+## Copy from Scratch to Work Dir ##
+# echo Copying Figures General Scratch to Work Dir
+# rsync -av /scratch/local/u0949991/RCNN_out/rcnn*.png ~/weat_ml/figures/
+
+## Clean Up local scratch ##
+# echo Cleaning Up Local Scratch
+# rm -rf /scratch/local/u0949991/RCNN_*
+
+## Echo completion ##
+echo Job completed on `date`
+
+## End of Slurm Script ##
