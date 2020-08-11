@@ -17,8 +17,8 @@ Comment : Portfolio of selected projects made during my research in Cosmic Rays 
 
 **CHPC_ml_weather_classification/** : Contains all machine learning codes building up from a Deep Neural Network (DNN), to a Convolution Neural Network (CNN), then a Recurrent Neural Network (RNN), and finally combing the RNN and CNN into a RCNN in order classify temporal progressions snapshots of the night sky into weather classes over a time period. Contains slurm (`.slm`) scripts for queuing and calling python scripts which use the Keras modules to train and classify the sequences of snapshots. Some scripts utilize a data generator for loading in and padding these 3D arrays and training the model and utilize CPU nodes at the Center for High Performance Computing (CHPC) at the University of Utah.
 
-**TAMap/TA_topographic_maps.ipynb** and **TAMap/TA_satellite_map.ipynb** : Jupyter notebooks for creating maps and overlaying features of the Telescope Array Cosmic Ray Observatory with remote sensing data. The data used was Landsat 8 rasters for the composite satellite image and Shuttle Radio Topography Mission (SRTM) rasters for the topographic and shaded relief maps. More information about these notebooks can be found on my website:
-[Telescope Array Composite Satellite Map using Landsat Data](https://gregfurlich.com/posts/telescope-array-satellite-map.html)
+**TAMap/TA_topographic_maps.ipynb** and **TAMap/TA_satellite_map.ipynb** : Jupyter notebooks for creating maps and overlaying features of the Telescope Array Cosmic Ray Observatory with remote sensing data. The data used was Landsat 8 rasters for the composite satellite image and Shuttle Radio Topography Mission (SRTM) rasters for the topographic and shaded relief maps. More information about these notebooks can be found on my website:<br>
+[Telescope Array Composite Satellite Map using Landsat Data](https://gregfurlich.com/posts/telescope-array-satellite-map.html)<br>
 [Telescope Array Topography Maps using SRTM Data](https://gregfurlich.com/posts/telescope-array-topography-maps.html)
 
 <p align="center">
